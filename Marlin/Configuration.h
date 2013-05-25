@@ -8,8 +8,8 @@
 //User specified version info of THIS file to display in [Pronterface, etc] terminal window during startup.
 //Implementation of an idea by Prof Braino to inform user that any changes made
 //to THIS file by the user have been successfully uploaded into firmware.
-#define STRING_VERSION_CONFIG_H "2012-05-02" //Personal revision number for changes to THIS file.
-#define STRING_CONFIG_H_AUTHOR "erik" //Who made the changes.
+#define STRING_VERSION_CONFIG_H "2012-12-31" //Personal revision number for changes to THIS file.
+#define STRING_CONFIG_H_AUTHOR "Shawn" //Who made the changes.
 
 // This determines the communication speed of the printer
 //#define BAUDRATE 250000
@@ -61,7 +61,9 @@
 // 52 is 200k thermistor - ATC Semitec 204GT-2 (1k pullup)
 // 55 is 100k thermistor - ATC Semitec 104GT-2 (Used in ParCan) (1k pullup)
 
-#define TEMP_SENSOR_0 0
+
+// #define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 1
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_BED 0
@@ -82,7 +84,7 @@
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
 // You should use MINTEMP for thermistor short/failure protection.
-#define HEATER_0_MAXTEMP 275
+#define HEATER_0_MAXTEMP 200
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define BED_MAXTEMP 150
@@ -137,16 +139,16 @@
 // #define COREXY
 
 // corse Endstop Settings
-#define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
+//#define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
 
 #ifndef ENDSTOPPULLUPS
   // fine Enstop settings: Individual Pullups. will be ignord if ENDSTOPPULLUPS is defined
-  #define ENDSTOPPULLUP_XMAX
-  #define ENDSTOPPULLUP_YMAX
-  #define ENDSTOPPULLUP_ZMAX
+  //#define ENDSTOPPULLUP_XMAX
+  //#define ENDSTOPPULLUP_YMAX
+  //#define ENDSTOPPULLUP_ZMAX
   #define ENDSTOPPULLUP_XMIN
   #define ENDSTOPPULLUP_YMIN
-  //#define ENDSTOPPULLUP_ZMIN
+  #define ENDSTOPPULLUP_ZMIN
 #endif
 
 #ifdef ENDSTOPPULLUPS
@@ -159,9 +161,9 @@
 #endif
 
 // The pullups are needed if you directly connect a mechanical endswitch between the signal and ground pins.
-const bool X_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops. 
-const bool Y_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops. 
-const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops. 
+const bool X_ENDSTOPS_INVERTING = false; // set to true to invert the logic of the endstops. 
+const bool Y_ENDSTOPS_INVERTING = false; // set to true to invert the logic of the endstops. 
+const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of the endstops. 
 //#define DISABLE_MAX_ENDSTOPS
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
@@ -171,13 +173,13 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define E_ENABLE_ON 0 // For all extruders
 
 // Disables axis when it's not being used.
-#define DISABLE_X true
+#define DISABLE_X false
 #define DISABLE_Y false
-#define DISABLE_Z true
-#define DISABLE_E true // For all extruders
+#define DISABLE_Z false
+#define DISABLE_E false // For all extruders
 
 #define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
+#define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
 #define INVERT_Z_DIR true     // for Mendel set to false, for Orca set to true
 #define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false    // for direct drive extruder v9 set to true, for geared extruder set to false
@@ -192,11 +194,11 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define min_software_endstops true //If true, axis won't move to coordinates less than HOME_POS.
 #define max_software_endstops true  //If true, axis won't move to coordinates greater than the defined lengths below.
 // Travel limits after homing
-#define X_MAX_POS 205
+#define X_MAX_POS 150
 #define X_MIN_POS 0
-#define Y_MAX_POS 205
+#define Y_MAX_POS 95
 #define Y_MIN_POS 0
-#define Z_MAX_POS 200
+#define Z_MAX_POS 100
 #define Z_MIN_POS 0
 
 #define X_MAX_LENGTH (X_MAX_POS - X_MIN_POS)
@@ -218,7 +220,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {78.7402,78.7402,200*8/3,760*1.1}  // default steps per unit for ultimaker 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {44.566, 44.5423, 2570, 464.4}  // default steps per unit for ultimaker 
 #define DEFAULT_MAX_FEEDRATE          {500, 500, 5, 45}    // (mm/sec)    
 #define DEFAULT_MAX_ACCELERATION      {9000,9000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
